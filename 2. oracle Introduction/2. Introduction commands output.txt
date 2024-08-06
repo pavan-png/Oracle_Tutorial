@@ -1,0 +1,1011 @@
+
+SQL*Plus: Release 21.0.0.0.0 - Production on Tue Aug 6 12:03:14 2024
+Version 21.3.0.0.0
+
+Copyright (c) 1982, 2021, Oracle.  All rights reserved.
+
+Enter user-name: system
+Enter password:
+Last Successful login time: Tue Aug 06 2024 10:18:27 +05:30
+
+Connected to:
+Oracle Database 21c Enterprise Edition Release 21.0.0.0.0 - Production
+Version 21.3.0.0.0
+
+SQL> conn
+Enter user-name: system / 2001
+Connected.
+SQL> sonn
+SP2-0042: unknown command "sonn" - rest of line ignored.
+SQL> conn
+Enter user-name: \sys as sysdba
+Enter password:
+Connected.
+SQL> ALTER USER system ACCOUNT LOCK;
+
+User altered.
+
+SQL> conn
+Enter user-name: system
+Enter password:
+ERROR:
+ORA-28000: The account is locked.
+
+
+Warning: You are no longer connected to ORACLE.
+SQL> conn
+Enter user-name: \sys as sysdba
+Enter password:
+Connected.
+SQL> ALTER USER system ACCOUNT UNLOCK;
+
+User altered.
+
+SQL> conn
+Enter user-name: system
+Enter password:
+Connected.
+
+
+SQL> create user something identified by abc;
+create user something identified by abc
+            *
+ERROR at line 1:
+ORA-65096: invalid common user or role name
+
+SQL> conn
+Enter user-name: \sys as sysdba
+Enter password:
+Connected.
+
+SQL> SHOW USER
+USER is "SYS"
+SQL> ALTER SESSION SET"_ORACLE_SCRIPT" = TRUE;
+
+Session altered.
+
+SQL> CREATE USER dummy IDENTIFIED BY 1234;
+
+User created.
+
+SQL> conn
+Enter user-name: dummy
+Enter password:
+ERROR:
+ORA-01045: user DUMMY lacks CREATE SESSION privilege; logon denied
+
+
+Warning: You are no longer connected to ORACLE.
+SQL> GRANT CONNECT TO dummy;
+SP2-0640: Not connected
+SQL> conn
+Enter user-name: system
+Enter password:
+Connected.
+SQL> GRANT CONNECT TO dummy;
+
+Grant succeeded.
+
+SQL> conn
+Enter user-name: dummy
+Enter password:
+Connected.
+SQL> PASSWORD;
+Changing password for DUMMY
+Old password:
+New password:
+Retype new password:
+Password changed
+SQL> conn
+Enter user-name: dummy/12345
+Connected.
+SQL> conn
+Enter user-name: system
+Enter password:
+Connected.
+SQL> ALTER USER dummy IDENTIFIED BY 1234;
+
+User altered.
+
+SQL> conn
+Enter user-name: dummy/1234
+Connected.
+SQL> conn
+Enter user-name: system
+Enter password:
+Connected.
+SQL> SELECT * FROM ALL USERS;
+SELECT * FROM ALL USERS
+              *
+ERROR at line 1:
+ORA-00903: invalid table name
+
+
+SQL> SELECT * FROM ALL_USERS;
+
+USERNAME
+--------------------------------------------------------------------------------
+   USER_ID CREATED   COM O INH
+---------- --------- --- - ---
+DEFAULT_COLLATION
+--------------------------------------------------------------------------------
+IMP ALL EXT
+--- --- ---
+SYS
+         0 28-SEP-21 YES Y NO
+USING_NLS_COMP
+NO  NO  NO
+
+
+USERNAME
+--------------------------------------------------------------------------------
+   USER_ID CREATED   COM O INH
+---------- --------- --- - ---
+DEFAULT_COLLATION
+--------------------------------------------------------------------------------
+IMP ALL EXT
+--- --- ---
+AUDSYS
+         8 28-SEP-21 YES Y NO
+USING_NLS_COMP
+NO  NO  NO
+
+
+USERNAME
+--------------------------------------------------------------------------------
+   USER_ID CREATED   COM O INH
+---------- --------- --- - ---
+DEFAULT_COLLATION
+--------------------------------------------------------------------------------
+IMP ALL EXT
+--- --- ---
+SYSTEM
+         9 28-SEP-21 YES Y NO
+USING_NLS_COMP
+NO  NO  NO
+
+
+USERNAME
+--------------------------------------------------------------------------------
+   USER_ID CREATED   COM O INH
+---------- --------- --- - ---
+DEFAULT_COLLATION
+--------------------------------------------------------------------------------
+IMP ALL EXT
+--- --- ---
+SYSBACKUP
+2147483617 28-SEP-21 YES Y NO
+USING_NLS_COMP
+NO  NO  NO
+
+
+USERNAME
+--------------------------------------------------------------------------------
+   USER_ID CREATED   COM O INH
+---------- --------- --- - ---
+DEFAULT_COLLATION
+--------------------------------------------------------------------------------
+IMP ALL EXT
+--- --- ---
+SYSDG
+2147483618 28-SEP-21 YES Y NO
+USING_NLS_COMP
+NO  NO  NO
+
+
+USERNAME
+--------------------------------------------------------------------------------
+   USER_ID CREATED   COM O INH
+---------- --------- --- - ---
+DEFAULT_COLLATION
+--------------------------------------------------------------------------------
+IMP ALL EXT
+--- --- ---
+SYSKM
+2147483619 28-SEP-21 YES Y NO
+USING_NLS_COMP
+NO  NO  NO
+
+
+USERNAME
+--------------------------------------------------------------------------------
+   USER_ID CREATED   COM O INH
+---------- --------- --- - ---
+DEFAULT_COLLATION
+--------------------------------------------------------------------------------
+IMP ALL EXT
+--- --- ---
+SYSRAC
+2147483620 28-SEP-21 YES Y NO
+USING_NLS_COMP
+NO  NO  NO
+
+
+USERNAME
+--------------------------------------------------------------------------------
+   USER_ID CREATED   COM O INH
+---------- --------- --- - ---
+DEFAULT_COLLATION
+--------------------------------------------------------------------------------
+IMP ALL EXT
+--- --- ---
+OUTLN
+        13 28-SEP-21 YES Y NO
+USING_NLS_COMP
+NO  NO  NO
+
+
+USERNAME
+--------------------------------------------------------------------------------
+   USER_ID CREATED   COM O INH
+---------- --------- --- - ---
+DEFAULT_COLLATION
+--------------------------------------------------------------------------------
+IMP ALL EXT
+--- --- ---
+GSMADMIN_INTERNAL
+        24 28-SEP-21 YES Y NO
+USING_NLS_COMP
+NO  NO  NO
+
+
+USERNAME
+--------------------------------------------------------------------------------
+   USER_ID CREATED   COM O INH
+---------- --------- --- - ---
+DEFAULT_COLLATION
+--------------------------------------------------------------------------------
+IMP ALL EXT
+--- --- ---
+GSMUSER
+        25 28-SEP-21 YES Y NO
+USING_NLS_COMP
+NO  NO  NO
+
+
+USERNAME
+--------------------------------------------------------------------------------
+   USER_ID CREATED   COM O INH
+---------- --------- --- - ---
+DEFAULT_COLLATION
+--------------------------------------------------------------------------------
+IMP ALL EXT
+--- --- ---
+GSMROOTUSER
+        26 28-SEP-21 YES Y NO
+USING_NLS_COMP
+NO  NO  NO
+
+
+USERNAME
+--------------------------------------------------------------------------------
+   USER_ID CREATED   COM O INH
+---------- --------- --- - ---
+DEFAULT_COLLATION
+--------------------------------------------------------------------------------
+IMP ALL EXT
+--- --- ---
+DIP
+        27 28-SEP-21 YES Y NO
+USING_NLS_COMP
+NO  NO  NO
+
+
+USERNAME
+--------------------------------------------------------------------------------
+   USER_ID CREATED   COM O INH
+---------- --------- --- - ---
+DEFAULT_COLLATION
+--------------------------------------------------------------------------------
+IMP ALL EXT
+--- --- ---
+XS$NULL
+2147483638 28-SEP-21 YES Y NO
+USING_NLS_COMP
+NO  NO  NO
+
+
+USERNAME
+--------------------------------------------------------------------------------
+   USER_ID CREATED   COM O INH
+---------- --------- --- - ---
+DEFAULT_COLLATION
+--------------------------------------------------------------------------------
+IMP ALL EXT
+--- --- ---
+REMOTE_SCHEDULER_AGENT
+        38 28-SEP-21 YES Y NO
+USING_NLS_COMP
+NO  NO  NO
+
+
+USERNAME
+--------------------------------------------------------------------------------
+   USER_ID CREATED   COM O INH
+---------- --------- --- - ---
+DEFAULT_COLLATION
+--------------------------------------------------------------------------------
+IMP ALL EXT
+--- --- ---
+DBSFWUSER
+        39 28-SEP-21 YES Y NO
+USING_NLS_COMP
+NO  NO  NO
+
+
+USERNAME
+--------------------------------------------------------------------------------
+   USER_ID CREATED   COM O INH
+---------- --------- --- - ---
+DEFAULT_COLLATION
+--------------------------------------------------------------------------------
+IMP ALL EXT
+--- --- ---
+ORACLE_OCM
+        43 28-SEP-21 YES Y NO
+USING_NLS_COMP
+NO  NO  NO
+
+
+USERNAME
+--------------------------------------------------------------------------------
+   USER_ID CREATED   COM O INH
+---------- --------- --- - ---
+DEFAULT_COLLATION
+--------------------------------------------------------------------------------
+IMP ALL EXT
+--- --- ---
+SYS$UMF
+        52 28-SEP-21 YES Y NO
+USING_NLS_COMP
+NO  NO  NO
+
+
+USERNAME
+--------------------------------------------------------------------------------
+   USER_ID CREATED   COM O INH
+---------- --------- --- - ---
+DEFAULT_COLLATION
+--------------------------------------------------------------------------------
+IMP ALL EXT
+--- --- ---
+DGPDB_INT
+        56 28-SEP-21 YES Y NO
+USING_NLS_COMP
+NO  NO  NO
+
+
+USERNAME
+--------------------------------------------------------------------------------
+   USER_ID CREATED   COM O INH
+---------- --------- --- - ---
+DEFAULT_COLLATION
+--------------------------------------------------------------------------------
+IMP ALL EXT
+--- --- ---
+DBSNMP
+        63 28-SEP-21 YES Y NO
+USING_NLS_COMP
+NO  NO  NO
+
+
+USERNAME
+--------------------------------------------------------------------------------
+   USER_ID CREATED   COM O INH
+---------- --------- --- - ---
+DEFAULT_COLLATION
+--------------------------------------------------------------------------------
+IMP ALL EXT
+--- --- ---
+APPQOSSYS
+        67 28-SEP-21 YES Y NO
+USING_NLS_COMP
+NO  NO  NO
+
+
+USERNAME
+--------------------------------------------------------------------------------
+   USER_ID CREATED   COM O INH
+---------- --------- --- - ---
+DEFAULT_COLLATION
+--------------------------------------------------------------------------------
+IMP ALL EXT
+--- --- ---
+GSMCATUSER
+        68 28-SEP-21 YES Y NO
+USING_NLS_COMP
+NO  NO  NO
+
+
+USERNAME
+--------------------------------------------------------------------------------
+   USER_ID CREATED   COM O INH
+---------- --------- --- - ---
+DEFAULT_COLLATION
+--------------------------------------------------------------------------------
+IMP ALL EXT
+--- --- ---
+GGSYS
+        69 28-SEP-21 YES Y NO
+USING_NLS_COMP
+NO  NO  NO
+
+
+USERNAME
+--------------------------------------------------------------------------------
+   USER_ID CREATED   COM O INH
+---------- --------- --- - ---
+DEFAULT_COLLATION
+--------------------------------------------------------------------------------
+IMP ALL EXT
+--- --- ---
+XDB
+        71 28-SEP-21 YES Y NO
+USING_NLS_COMP
+NO  NO  NO
+
+
+USERNAME
+--------------------------------------------------------------------------------
+   USER_ID CREATED   COM O INH
+---------- --------- --- - ---
+DEFAULT_COLLATION
+--------------------------------------------------------------------------------
+IMP ALL EXT
+--- --- ---
+ANONYMOUS
+        72 28-SEP-21 YES Y NO
+USING_NLS_COMP
+NO  NO  NO
+
+
+USERNAME
+--------------------------------------------------------------------------------
+   USER_ID CREATED   COM O INH
+---------- --------- --- - ---
+DEFAULT_COLLATION
+--------------------------------------------------------------------------------
+IMP ALL EXT
+--- --- ---
+WMSYS
+        81 28-SEP-21 YES Y NO
+USING_NLS_COMP
+NO  NO  NO
+
+
+USERNAME
+--------------------------------------------------------------------------------
+   USER_ID CREATED   COM O INH
+---------- --------- --- - ---
+DEFAULT_COLLATION
+--------------------------------------------------------------------------------
+IMP ALL EXT
+--- --- ---
+OJVMSYS
+        90 28-SEP-21 YES Y NO
+USING_NLS_COMP
+NO  NO  NO
+
+
+USERNAME
+--------------------------------------------------------------------------------
+   USER_ID CREATED   COM O INH
+---------- --------- --- - ---
+DEFAULT_COLLATION
+--------------------------------------------------------------------------------
+IMP ALL EXT
+--- --- ---
+CTXSYS
+        92 28-SEP-21 YES Y NO
+USING_NLS_COMP
+NO  NO  NO
+
+
+USERNAME
+--------------------------------------------------------------------------------
+   USER_ID CREATED   COM O INH
+---------- --------- --- - ---
+DEFAULT_COLLATION
+--------------------------------------------------------------------------------
+IMP ALL EXT
+--- --- ---
+ORDSYS
+        94 28-SEP-21 YES Y NO
+USING_NLS_COMP
+NO  NO  NO
+
+
+USERNAME
+--------------------------------------------------------------------------------
+   USER_ID CREATED   COM O INH
+---------- --------- --- - ---
+DEFAULT_COLLATION
+--------------------------------------------------------------------------------
+IMP ALL EXT
+--- --- ---
+ORDDATA
+        95 28-SEP-21 YES Y NO
+USING_NLS_COMP
+NO  NO  NO
+
+
+USERNAME
+--------------------------------------------------------------------------------
+   USER_ID CREATED   COM O INH
+---------- --------- --- - ---
+DEFAULT_COLLATION
+--------------------------------------------------------------------------------
+IMP ALL EXT
+--- --- ---
+ORDPLUGINS
+        96 28-SEP-21 YES Y NO
+USING_NLS_COMP
+NO  NO  NO
+
+
+USERNAME
+--------------------------------------------------------------------------------
+   USER_ID CREATED   COM O INH
+---------- --------- --- - ---
+DEFAULT_COLLATION
+--------------------------------------------------------------------------------
+IMP ALL EXT
+--- --- ---
+SI_INFORMTN_SCHEMA
+        97 28-SEP-21 YES Y NO
+USING_NLS_COMP
+NO  NO  NO
+
+
+USERNAME
+--------------------------------------------------------------------------------
+   USER_ID CREATED   COM O INH
+---------- --------- --- - ---
+DEFAULT_COLLATION
+--------------------------------------------------------------------------------
+IMP ALL EXT
+--- --- ---
+DVSYS
+   1279990 28-SEP-21 YES Y NO
+USING_NLS_COMP
+NO  NO  NO
+
+
+USERNAME
+--------------------------------------------------------------------------------
+   USER_ID CREATED   COM O INH
+---------- --------- --- - ---
+DEFAULT_COLLATION
+--------------------------------------------------------------------------------
+IMP ALL EXT
+--- --- ---
+OLAPSYS
+       100 28-SEP-21 YES Y NO
+USING_NLS_COMP
+NO  NO  NO
+
+
+USERNAME
+--------------------------------------------------------------------------------
+   USER_ID CREATED   COM O INH
+---------- --------- --- - ---
+DEFAULT_COLLATION
+--------------------------------------------------------------------------------
+IMP ALL EXT
+--- --- ---
+MDSYS
+       103 28-SEP-21 YES Y NO
+USING_NLS_COMP
+NO  NO  NO
+
+
+USERNAME
+--------------------------------------------------------------------------------
+   USER_ID CREATED   COM O INH
+---------- --------- --- - ---
+DEFAULT_COLLATION
+--------------------------------------------------------------------------------
+IMP ALL EXT
+--- --- ---
+MDDATA
+       104 28-SEP-21 YES Y NO
+USING_NLS_COMP
+NO  NO  NO
+
+
+USERNAME
+--------------------------------------------------------------------------------
+   USER_ID CREATED   COM O INH
+---------- --------- --- - ---
+DEFAULT_COLLATION
+--------------------------------------------------------------------------------
+IMP ALL EXT
+--- --- ---
+LBACSYS
+       106 28-SEP-21 YES Y NO
+USING_NLS_COMP
+NO  NO  NO
+
+
+USERNAME
+--------------------------------------------------------------------------------
+   USER_ID CREATED   COM O INH
+---------- --------- --- - ---
+DEFAULT_COLLATION
+--------------------------------------------------------------------------------
+IMP ALL EXT
+--- --- ---
+DVF
+       108 28-SEP-21 YES Y NO
+USING_NLS_COMP
+NO  NO  NO
+
+
+USERNAME
+--------------------------------------------------------------------------------
+   USER_ID CREATED   COM O INH
+---------- --------- --- - ---
+DEFAULT_COLLATION
+--------------------------------------------------------------------------------
+IMP ALL EXT
+--- --- ---
+DUMMY
+       109 06-AUG-24 YES Y NO
+USING_NLS_COMP
+NO  NO  NO
+
+
+38 rows selected.
+
+SQL> SET PAGESIZE 100;
+SQL> SET LINES 160;
+SQL> SELECT * FROM ALL_USERS;
+
+USERNAME
+   USER_ID CREATED   COM O INH
+-------------------------------------------------------------------------------------------------------------------------------- ---------- --------- --- - ---
+DEFAULT_COLLATION                                                                                    IMP ALL EXT
+---------------------------------------------------------------------------------------------------- --- --- ---
+SYS
+ 0 28-SEP-21 YES Y NO
+USING_NLS_COMP                                                                                       NO  NO  NO
+
+AUDSYS
+ 8 28-SEP-21 YES Y NO
+USING_NLS_COMP                                                                                       NO  NO  NO
+
+SYSTEM
+ 9 28-SEP-21 YES Y NO
+USING_NLS_COMP                                                                                       NO  NO  NO
+
+SYSBACKUP
+2147483617 28-SEP-21 YES Y NO
+USING_NLS_COMP                                                                                       NO  NO  NO
+
+SYSDG
+2147483618 28-SEP-21 YES Y NO
+USING_NLS_COMP                                                                                       NO  NO  NO
+
+SYSKM
+2147483619 28-SEP-21 YES Y NO
+USING_NLS_COMP                                                                                       NO  NO  NO
+
+SYSRAC
+2147483620 28-SEP-21 YES Y NO
+USING_NLS_COMP                                                                                       NO  NO  NO
+
+OUTLN
+13 28-SEP-21 YES Y NO
+USING_NLS_COMP                                                                                       NO  NO  NO
+
+GSMADMIN_INTERNAL
+24 28-SEP-21 YES Y NO
+USING_NLS_COMP                                                                                       NO  NO  NO
+
+GSMUSER
+25 28-SEP-21 YES Y NO
+USING_NLS_COMP                                                                                       NO  NO  NO
+
+GSMROOTUSER
+26 28-SEP-21 YES Y NO
+USING_NLS_COMP                                                                                       NO  NO  NO
+
+DIP
+27 28-SEP-21 YES Y NO
+USING_NLS_COMP                                                                                       NO  NO  NO
+
+XS$NULL
+2147483638 28-SEP-21 YES Y NO
+USING_NLS_COMP                                                                                       NO  NO  NO
+
+REMOTE_SCHEDULER_AGENT
+38 28-SEP-21 YES Y NO
+USING_NLS_COMP                                                                                       NO  NO  NO
+
+DBSFWUSER
+39 28-SEP-21 YES Y NO
+USING_NLS_COMP                                                                                       NO  NO  NO
+
+ORACLE_OCM
+43 28-SEP-21 YES Y NO
+USING_NLS_COMP                                                                                       NO  NO  NO
+
+SYS$UMF
+52 28-SEP-21 YES Y NO
+USING_NLS_COMP                                                                                       NO  NO  NO
+
+DGPDB_INT
+56 28-SEP-21 YES Y NO
+USING_NLS_COMP                                                                                       NO  NO  NO
+
+DBSNMP
+63 28-SEP-21 YES Y NO
+USING_NLS_COMP                                                                                       NO  NO  NO
+
+APPQOSSYS
+67 28-SEP-21 YES Y NO
+USING_NLS_COMP                                                                                       NO  NO  NO
+
+GSMCATUSER
+68 28-SEP-21 YES Y NO
+USING_NLS_COMP                                                                                       NO  NO  NO
+
+GGSYS
+69 28-SEP-21 YES Y NO
+USING_NLS_COMP                                                                                       NO  NO  NO
+
+XDB
+71 28-SEP-21 YES Y NO
+USING_NLS_COMP                                                                                       NO  NO  NO
+
+ANONYMOUS
+72 28-SEP-21 YES Y NO
+USING_NLS_COMP                                                                                       NO  NO  NO
+
+WMSYS
+81 28-SEP-21 YES Y NO
+USING_NLS_COMP                                                                                       NO  NO  NO
+
+OJVMSYS
+90 28-SEP-21 YES Y NO
+USING_NLS_COMP                                                                                       NO  NO  NO
+
+CTXSYS
+92 28-SEP-21 YES Y NO
+USING_NLS_COMP                                                                                       NO  NO  NO
+
+ORDSYS
+94 28-SEP-21 YES Y NO
+USING_NLS_COMP                                                                                       NO  NO  NO
+
+ORDDATA
+95 28-SEP-21 YES Y NO
+USING_NLS_COMP                                                                                       NO  NO  NO
+
+ORDPLUGINS
+96 28-SEP-21 YES Y NO
+USING_NLS_COMP                                                                                       NO  NO  NO
+
+SI_INFORMTN_SCHEMA
+97 28-SEP-21 YES Y NO
+USING_NLS_COMP                                                                                       NO  NO  NO
+
+DVSYS
+   1279990 28-SEP-21 YES Y NO
+USING_NLS_COMP                                                                                       NO  NO  NO
+
+USERNAME
+   USER_ID CREATED   COM O INH
+-------------------------------------------------------------------------------------------------------------------------------- ---------- --------- --- - ---
+DEFAULT_COLLATION                                                                                    IMP ALL EXT
+---------------------------------------------------------------------------------------------------- --- --- ---
+
+OLAPSYS                                                                                                                100 28-SEP-21 YES Y NO
+USING_NLS_COMP                                                                                       NO  NO  NO
+
+MDSYS                                                                                                                  103 28-SEP-21 YES Y NO
+USING_NLS_COMP                                                                                       NO  NO  NO
+
+MDDATA                                                                                                                 104 28-SEP-21 YES Y NO
+USING_NLS_COMP                                                                                       NO  NO  NO
+
+LBACSYS                                                                                                                106 28-SEP-21 YES Y NO
+USING_NLS_COMP                                                                                       NO  NO  NO
+
+DVF                                                                                                                    108 28-SEP-21 YES Y NO
+USING_NLS_COMP                                                                                       NO  NO  NO
+
+DUMMY                                                                                                                  109 06-AUG-24 YES Y NO
+USING_NLS_COMP                                                                                       NO  NO  NO
+
+
+38 rows selected.
+
+SQL> DROP USER dummy;
+DROP USER dummy
+*
+ERROR at line 1:
+ORA-28014: cannot drop administrative user or role
+
+
+SQL> conn
+Enter user-name: \sys as sysdba
+Enter password:
+Connected.
+SQL> DROP USER dummy;
+DROP USER dummy
+*
+ERROR at line 1:
+ORA-28014: cannot drop administrative user or role
+
+
+SQL> ALTER SESSION SET"_ORACLE_SCRIPT" = TRUE
+  2
+SQL> ALTER SESSION SET"_ORACLE_SCRIPT" = TRUE;
+
+Session altered.
+
+SQL> DROP USER dummy;
+
+User dropped.
+
+SQL> SELECT * FROM ALL_USERS;
+
+USERNAME
+   USER_ID CREATED   COM O INH
+-------------------------------------------------------------------------------------------------------------------------------- ---------- --------- --- - ---
+DEFAULT_COLLATION                                                                                    IMP ALL EXT
+---------------------------------------------------------------------------------------------------- --- --- ---
+SYS
+ 0 28-SEP-21 YES Y NO
+USING_NLS_COMP                                                                                       NO  NO  NO
+
+AUDSYS
+ 8 28-SEP-21 YES Y NO
+USING_NLS_COMP                                                                                       NO  NO  NO
+
+SYSTEM
+ 9 28-SEP-21 YES Y NO
+USING_NLS_COMP                                                                                       NO  NO  NO
+
+SYSBACKUP
+2147483617 28-SEP-21 YES Y NO
+USING_NLS_COMP                                                                                       NO  NO  NO
+
+SYSDG
+2147483618 28-SEP-21 YES Y NO
+USING_NLS_COMP                                                                                       NO  NO  NO
+
+SYSKM
+2147483619 28-SEP-21 YES Y NO
+USING_NLS_COMP                                                                                       NO  NO  NO
+
+SYSRAC
+2147483620 28-SEP-21 YES Y NO
+USING_NLS_COMP                                                                                       NO  NO  NO
+
+OUTLN
+13 28-SEP-21 YES Y NO
+USING_NLS_COMP                                                                                       NO  NO  NO
+
+GSMADMIN_INTERNAL
+24 28-SEP-21 YES Y NO
+USING_NLS_COMP                                                                                       NO  NO  NO
+
+GSMUSER
+25 28-SEP-21 YES Y NO
+USING_NLS_COMP                                                                                       NO  NO  NO
+
+GSMROOTUSER
+26 28-SEP-21 YES Y NO
+USING_NLS_COMP                                                                                       NO  NO  NO
+
+DIP
+27 28-SEP-21 YES Y NO
+USING_NLS_COMP                                                                                       NO  NO  NO
+
+XS$NULL
+2147483638 28-SEP-21 YES Y NO
+USING_NLS_COMP                                                                                       NO  NO  NO
+
+REMOTE_SCHEDULER_AGENT
+38 28-SEP-21 YES Y NO
+USING_NLS_COMP                                                                                       NO  NO  NO
+
+DBSFWUSER
+39 28-SEP-21 YES Y NO
+USING_NLS_COMP                                                                                       NO  NO  NO
+
+ORACLE_OCM
+43 28-SEP-21 YES Y NO
+USING_NLS_COMP                                                                                       NO  NO  NO
+
+SYS$UMF
+52 28-SEP-21 YES Y NO
+USING_NLS_COMP                                                                                       NO  NO  NO
+
+DGPDB_INT
+56 28-SEP-21 YES Y NO
+USING_NLS_COMP                                                                                       NO  NO  NO
+
+DBSNMP
+63 28-SEP-21 YES Y NO
+USING_NLS_COMP                                                                                       NO  NO  NO
+
+APPQOSSYS
+67 28-SEP-21 YES Y NO
+USING_NLS_COMP                                                                                       NO  NO  NO
+
+GSMCATUSER
+68 28-SEP-21 YES Y NO
+USING_NLS_COMP                                                                                       NO  NO  NO
+
+GGSYS
+69 28-SEP-21 YES Y NO
+USING_NLS_COMP                                                                                       NO  NO  NO
+
+XDB
+71 28-SEP-21 YES Y NO
+USING_NLS_COMP                                                                                       NO  NO  NO
+
+ANONYMOUS
+72 28-SEP-21 YES Y NO
+USING_NLS_COMP                                                                                       NO  NO  NO
+
+WMSYS
+81 28-SEP-21 YES Y NO
+USING_NLS_COMP                                                                                       NO  NO  NO
+
+OJVMSYS
+90 28-SEP-21 YES Y NO
+USING_NLS_COMP                                                                                       NO  NO  NO
+
+CTXSYS
+92 28-SEP-21 YES Y NO
+USING_NLS_COMP                                                                                       NO  NO  NO
+
+ORDSYS
+94 28-SEP-21 YES Y NO
+USING_NLS_COMP                                                                                       NO  NO  NO
+
+ORDDATA
+95 28-SEP-21 YES Y NO
+USING_NLS_COMP                                                                                       NO  NO  NO
+
+ORDPLUGINS
+96 28-SEP-21 YES Y NO
+USING_NLS_COMP                                                                                       NO  NO  NO
+
+SI_INFORMTN_SCHEMA
+97 28-SEP-21 YES Y NO
+USING_NLS_COMP                                                                                       NO  NO  NO
+
+DVSYS
+   1279990 28-SEP-21 YES Y NO
+USING_NLS_COMP                                                                                       NO  NO  NO
+
+USERNAME
+   USER_ID CREATED   COM O INH
+-------------------------------------------------------------------------------------------------------------------------------- ---------- --------- --- - ---
+DEFAULT_COLLATION                                                                                    IMP ALL EXT
+---------------------------------------------------------------------------------------------------- --- --- ---
+
+OLAPSYS                                                                                                                100 28-SEP-21 YES Y NO
+USING_NLS_COMP                                                                                       NO  NO  NO
+
+MDSYS                                                                                                                  103 28-SEP-21 YES Y NO
+USING_NLS_COMP                                                                                       NO  NO  NO
+
+MDDATA                                                                                                                 104 28-SEP-21 YES Y NO
+USING_NLS_COMP                                                                                       NO  NO  NO
+
+LBACSYS                                                                                                                106 28-SEP-21 YES Y NO
+USING_NLS_COMP                                                                                       NO  NO  NO
+
+DVF                                                                                                                    108 28-SEP-21 YES Y NO
+USING_NLS_COMP                                                                                       NO  NO  NO
+
+
+37 rows selected.
+
+SQL>
