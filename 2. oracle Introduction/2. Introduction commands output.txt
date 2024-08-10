@@ -1,4 +1,9 @@
+/*Enter the username and password
 
+Enter username: System
+Enter password: abcd1988 (at installation time password)
+Once you entered the username and password, press the enter button as shown in the below image. Here, the password is invisible.
+*/
 SQL*Plus: Release 21.0.0.0.0 - Production on Tue Aug 6 12:03:14 2024
 Version 21.3.0.0.0
 
@@ -12,18 +17,41 @@ Connected to:
 Oracle Database 21c Enterprise Edition Release 21.0.0.0.0 - Production
 Version 21.3.0.0.0
 
+
+
+/*   If you want to see the password while connecting  use  “ conn ” command and execute/ press enter
+•	Syntax :        username/password 
+*/
 SQL> conn
 Enter user-name: system / 2001
 Connected.
-SQL> sonn
-SP2-0042: unknown command "sonn" - rest of line ignored.
-SQL> conn
+
+
+/*
+ORA-28000 : this account is locked. 
+If this  error arises login as system dba administrator
+To login as system dba administrator use command
+•	“\sys as sysdba”  in the user name and give the password . 
+•	To lock / unlock a user in the oracle database server
+Syntax : ALTER USER  <username>  ACCOUNT  LOCK/UNLOCK;
+
+*/
 Enter user-name: \sys as sysdba
 Enter password:
 Connected.
 SQL> ALTER USER system ACCOUNT LOCK;
+User altered
 
-User altered.
+
+
+/*
+ sometimes an commonly occured problem when we try to lock/ unlock an account .
+ORA-65096 : Invalid common user or role name
+if this arirse use command 
+*/
+SQL> alter session set “_ORACLE_SCRIPT”=true;
+Session altered
+
 
 SQL> conn
 Enter user-name: system
@@ -31,15 +59,15 @@ Enter password:
 ERROR:
 ORA-28000: The account is locked.
 
-
-Warning: You are no longer connected to ORACLE.
 SQL> conn
 Enter user-name: \sys as sysdba
 Enter password:
 Connected.
 SQL> ALTER USER system ACCOUNT UNLOCK;
-
 User altered.
+
+
+
 
 SQL> conn
 Enter user-name: system
@@ -47,11 +75,25 @@ Enter password:
 Connected.
 
 
+/*
+To create a new user and password in oracle DB 
+Syntax : 
+CREATE  USER  <username>  IDENTIFIED BY <password> ; 
+*/
+
+
 SQL> create user something identified by abc;
 create user something identified by abc
             *
 ERROR at line 1:
 ORA-65096: invalid common user or role name
+
+/*
+if this arirse use command 
+*/
+
+SQL> alter session set “_ORACLE_SCRIPT”=true;
+Session altered
 
 SQL> conn
 Enter user-name: \sys as sysdba
@@ -68,6 +110,7 @@ SQL> CREATE USER dummy IDENTIFIED BY 1234;
 
 User created.
 
+
 SQL> conn
 Enter user-name: dummy
 Enter password:
@@ -75,14 +118,25 @@ ERROR:
 ORA-01045: user DUMMY lacks CREATE SESSION privilege; logon denied
 
 
+/*
+Note: User is created but  doesn’t permission to connect and create new tables in the database. So, permissions must be given to the user  by using the “grant” command by dba(system). Every user in the oracle server is called “schema”.
+Granting Permissions to User in Oracle Database:
+We need to use the Grant command to give permission to the user. The syntax is given below.
+Grant Connect, Resource to username;
+Here,
+1.	Connect => to connect to oracle database
+2.	Resource => to create new tables in the database.
+*/
+
+
 Warning: You are no longer connected to ORACLE.
-SQL> GRANT CONNECT TO dummy;
+SQL> GRANT CONNECT,RESOURCE TO dummy;
 SP2-0640: Not connected
 SQL> conn
 Enter user-name: system
 Enter password:
 Connected.
-SQL> GRANT CONNECT TO dummy;
+SQL> GRANT CONNECT,RESOURCE TO dummy;
 
 Grant succeeded.
 
@@ -90,6 +144,13 @@ SQL> conn
 Enter user-name: dummy
 Enter password:
 Connected.
+
+
+
+/*
+To change password for the account 
+Syntax:  PASSWORD 
+*/
 SQL> PASSWORD;
 Changing password for DUMMY
 Old password:
@@ -99,6 +160,14 @@ Password changed
 SQL> conn
 Enter user-name: dummy/12345
 Connected.
+
+
+*
+If the password is forgotten to create a new password 
+Login as admin and use command 
+Syntax :  ALTER  USER <username> IDENTIFIED BY  <new_password>
+*/
+
 SQL> conn
 Enter user-name: system
 Enter password:
@@ -110,16 +179,13 @@ User altered.
 SQL> conn
 Enter user-name: dummy/1234
 Connected.
+
+
+
 SQL> conn
 Enter user-name: system
 Enter password:
 Connected.
-SQL> SELECT * FROM ALL USERS;
-SELECT * FROM ALL USERS
-              *
-ERROR at line 1:
-ORA-00903: invalid table name
-
 
 SQL> SELECT * FROM ALL_USERS;
 
@@ -656,6 +722,26 @@ NO  NO  NO
 
 
 38 rows selected.
+
+
+
+/*
+When we want to display the information/data of a particular table proper systematically then we need to set the following two properties are,
+
+1) PAGESIZE n:
+The number of rows displayed per page. Here “n” is represented by no. of rows.
+ By default, a single page displays 14 rows.
+Syntax: set pagesize n;
+Example: set pagesize 100;
+
+2) LINES n:
+The number of characters in a single line. Here “n” is representing no. of characters.
+Syntax: set lines n;
+Example: set lines 100;
+
+SELECT  *  FROM ALL_USERS ;
+
+*/
 
 SQL> SET PAGESIZE 100;
 SQL> SET LINES 160;
