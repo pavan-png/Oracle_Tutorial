@@ -1,0 +1,184 @@
+
+SQL*Plus: Release 21.0.0.0.0 - Production on Tue Aug 13 18:51:23 2024
+Version 21.3.0.0.0
+
+Copyright (c) 1982, 2021, Oracle.  All rights reserved.
+
+Enter user-name: system
+Enter password:
+Last Successful login time: Tue Aug 13 2024 18:10:40 +05:30
+
+Connected to:
+Oracle Database 21c Enterprise Edition Release 21.0.0.0.0 - Production
+Version 21.3.0.0.0
+
+SQL> CREATE TABLE employee ( id int , name char ( 5 ) , salary int);
+
+Table created.
+
+SQL> DESC employee;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ ID                                                 NUMBER(38)
+ NAME                                               CHAR(5)
+ SALARY                                             NUMBER(38)
+
+SQL> ALTER TABLE employee MODIFY name char(7);
+
+Table altered.
+
+SQL> DESC employee;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ ID                                                 NUMBER(38)
+ NAME                                               CHAR(7)
+ SALARY                                             NUMBER(38)
+
+SQL> ALTER TABLE employee MODIFY name varchar(7);
+
+Table altered.
+
+SQL> DESC employee;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ ID                                                 NUMBER(38)
+ NAME                                               VARCHAR2(7)
+ SALARY                                             NUMBER(38)
+
+SQL> ALTER TABLE employee ADD COLUMN address varchar(7);
+ALTER TABLE employee ADD COLUMN address varchar(7)
+                         *
+ERROR at line 1:
+ORA-00904: : invalid identifier
+
+
+SQL> ALTER TABLE employee ADD  address varchar(7);
+
+Table altered.
+
+SQL> DESC employee;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ ID                                                 NUMBER(38)
+ NAME                                               VARCHAR2(7)
+ SALARY                                             NUMBER(38)
+ ADDRESS                                            VARCHAR2(7)
+
+SQL> ALTER TABLE empployee RENAME COLUMN id TO emp_id;
+ALTER TABLE empployee RENAME COLUMN id TO emp_id
+*
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+
+SQL> ALTER TABLE employee RENAME COLUMN id TO emp_id;
+
+Table altered.
+
+SQL> DESC employeel
+ERROR:
+ORA-04043: object employeel does not exist
+
+
+SQL> DESC employee;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ EMP_ID                                             NUMBER(38)
+ NAME                                               VARCHAR2(7)
+ SALARY                                             NUMBER(38)
+ ADDRESS                                            VARCHAR2(7)
+
+SQL> ALTER TABLE employee DROP COLUMN address;
+
+Table altered.
+
+SQL> DESC EMPLOYEE;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ EMP_ID                                             NUMBER(38)
+ NAME                                               VARCHAR2(7)
+ SALARY                                             NUMBER(38)
+
+SQL> RENAME employee TO emp_details;
+
+Table renamed.
+
+SQL> DESC employee;
+ERROR:
+ORA-04043: object employee does not exist
+
+
+SQL> DESC emp_details;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ EMP_ID                                             NUMBER(38)
+ NAME                                               VARCHAR2(7)
+ SALARY                                             NUMBER(38)
+
+SQL> TRUNCATE  TABLE emp_details;
+
+Table truncated.
+
+SQL> DESC emp_details;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ EMP_ID                                             NUMBER(38)
+ NAME                                               VARCHAR2(7)
+ SALARY                                             NUMBER(38)
+
+SQL> INSERT INTO emp_details VALUES (10 , pavan , 2000000);
+INSERT INTO emp_details VALUES (10 , pavan , 2000000)
+                                     *
+ERROR at line 1:
+ORA-00984: column not allowed here
+
+
+SQL> INSERT INTO emp_details VALUES (10 , 'pavan' , 2000000);
+
+1 row created.
+
+SQL> INSERT INTO emp_details VALUES ( 11, 'charan' ,2000000);
+
+1 row created.
+
+SQL> INSERT INTO emp_details VALUES (12 , 'anand' , 2000000);
+
+1 row created.
+
+SQL> DESC emp_details;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ EMP_ID                                             NUMBER(38)
+ NAME                                               VARCHAR2(7)
+ SALARY                                             NUMBER(38)
+
+SQL> SELECT * FROM emp_details;
+
+    EMP_ID NAME        SALARY
+---------- ------- ----------
+        10 pavan      2000000
+        11 charan     2000000
+        12 anand      2000000
+
+SQL> TRUNCATE TABLE emp_details ;
+
+Table truncated.
+
+SQL> SELECT * FROM emp_details;
+
+no rows selected
+
+SQL> DESC emp_details;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ EMP_ID                                             NUMBER(38)
+ NAME                                               VARCHAR2(7)
+ SALARY                                             NUMBER(38)
+
+SQL> DROP TABLE emp_details;
+
+Table dropped.
+
+SQL> DESC emp_details;
+ERROR:
+ORA-04043: object emp_details does not exist
